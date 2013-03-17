@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem "simple-rss"
+gem 'data_mapper'
 #gem "sinatra", :require => "sinatra/base"
 #gem "slim"
 #gem 'sass'
@@ -15,4 +16,7 @@ gem "simple-rss"
 group :development do
   gem "test-unit"
   gem "test-unit-notify"
+  gem "observr"
+  gem 'sqlite3'
+  gem 'dm-sqlite-adapter'
 end
