@@ -12,8 +12,7 @@ gem "simple-rss"
 #  gem 'dm-postgres-adapter'
 #end
 #
-#group :development do
-#  gem "shotgun"
-#  gem 'sqlite3'
-#  gem 'dm-sqlite-adapter'
-#end
+group :development do
+  gem "test-unit"
+  gem "test-unit-notify"
+end
