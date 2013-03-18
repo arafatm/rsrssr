@@ -1,7 +1,7 @@
 require "./test/config.rb"
 require 'dm-core'
 require 'dm-migrations'
-require './app/model/feed.rb'
+require './app/model/config.rb'
 
 class TestFeed < Test::Unit::TestCase
 
@@ -9,7 +9,7 @@ class TestFeed < Test::Unit::TestCase
     @url = "http://xkcd.com/rss.xml"
   end
 
-  def test_has_url
+  def test_has_attribute_url
     feed = Feed.first_or_create(:url => @url)
     assert_equal feed.url, @url
   end
@@ -18,8 +18,8 @@ class TestFeed < Test::Unit::TestCase
     Feed.first_or_create(:url => @url)
     begin
       Feed.create(:url => @url)
-    rescue 
-      assert true
+    rescue Exception => e
+      assert e.message == "column url is not unique"
     end
   end
 end
