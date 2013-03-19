@@ -1,4 +1,5 @@
 Dir.glob('test/*/*.rb') do |f|
+  system("echo '======================================== #{f}'")
   system("bundle exec ruby #{f}")
 end
 
