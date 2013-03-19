@@ -14,7 +14,9 @@ gem 'data_mapper'
 #end
 #
 group :development do
+  gem "rake"
   gem "test-unit"
+  gem "test-unit-runner-tap"
   gem "test-unit-notify"
   gem "observr"
   gem 'sqlite3'

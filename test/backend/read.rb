@@ -15,7 +15,7 @@ class TestRead < Test::Unit::TestCase
   end
 
   def test_feed
-    articles = Read.articles(@url)
+    articles = Read.feed(@url)
     assert articles.items.length > 0
   end
 

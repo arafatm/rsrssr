@@ -11,7 +11,8 @@ class TestFeed < Test::Unit::TestCase
 
   def test_has_attribute_url
     feed = Feed.first_or_create(:url => @url)
-    assert_equal feed.url, @url
+    #assert_equal feed.url, @url
+    assert false
   end
 
   def test_url_is_unique
