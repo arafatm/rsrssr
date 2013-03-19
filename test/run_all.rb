@@ -1,3 +1,12 @@
+## DO NOT RUN: haven't figured out how to make this work
 require 'test/unit'
 
-exit Test::Unit::AutoRunner.run(true, "test/model")
+models = File.join(".", "test", "model")
+puts models
+
+runner = Test::Unit::AutoRunner.new(true)
+puts runner
+
+runner.to_run << models
+runner.run
+

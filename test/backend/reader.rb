@@ -1,8 +1,8 @@
 require "./test/config.rb"
 require "./app/model/config.rb"
-require "./app/backend/read.rb"
+require "./app/backend/reader.rb"
 
-class TestRead < Test::Unit::TestCase
+class TestReader < Test::Unit::TestCase
 
   def setup
     @url = "http://www.xkcd.com/rss.xml"
@@ -10,12 +10,12 @@ class TestRead < Test::Unit::TestCase
 
   def test_load_feeds
     Feed.first_or_create(:url => @url)
-    feeds = Read.feeds
+    feeds = Reader.feeds
     assert feeds.count > 0
   end
 
   def test_feed
-    articles = Read.feed(@url)
+    articles = Reader.feed(@url)
     assert articles.items.length > 0
   end
 

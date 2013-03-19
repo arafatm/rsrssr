@@ -1,0 +1,29 @@
+runner: console
+console_options:
+  color_scheme: inverted
+color_schemes:
+  inverted:
+    success:
+      name: green
+      bold: false
+      intensity: false
+    failure:
+      name: magenta
+      bold: true
+      intensity: true
+    pending:
+      name: cyan
+      bold: true
+      intensity: false
+    omission:
+      name: yellow
+      bold: true
+      intensity: false
+    notification:
+      name: blue
+      bold: true
+      intensity: false
+    error: 
+      name: red
+      bold: true
+      intensity: true

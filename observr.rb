@@ -1,13 +1,13 @@
 def watch_tests
   watch( 'test/(.*)\.rb' ) do |md| 
-    system("echo '======================================== #{md[0]}'")
-    puts %x[bundle exec ruby #{md[0]} --notify]
+    system("echo '\n\n---------------------------------------- #{md[0]}'")
+    system("bundle exec ruby #{md[0]} --notify")
   end
 end
 
 def watch_app
   watch( 'app/(.*)/(.*).rb' ) do |md| 
-    system("echo '======================================== #{md[0]}'")
+    system("echo '\n\n---------------------------------------- #{md[0]}'")
     system("bundle exec ruby #{md[0].sub('app', 'test')} --notify") 
   end
 end
@@ -18,22 +18,21 @@ end
 
 # Ctrl-\
 Signal.trap('QUIT') do
-  puts "\n--- Running all tests ---\n"
-  run_all
-  puts
-end
-
-# Ctrl-Z
-Signal.trap('TSTP') do
-  puts "\n--- Reloading watched files ---\n"
+  puts "\n\n---------------------------------------- Reloading watched files ---\n"
   watch_tests
   watch_app
 end
 
-# Ctrl-C
-Signal.trap('INT') do 
-  abort("\n--- Exiting ---\n") 
+# Ctrl-Z
+Signal.trap('TSTP') do
+  puts "\n\n---------------------------------------- Running all tests ---\n"
+  run_all
 end
+
+# Ctrl-C
+#Signal.trap('INT') do 
+#  abort("\n\n---------------------------------------- Exiting ---\n") 
+#end
 
 run_all
 watch_tests

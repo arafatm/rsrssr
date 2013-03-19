@@ -2,7 +2,7 @@ require './app/model/config.rb'
 require 'simple-rss'
 require 'open-uri'
 
-class Read
+class Reader
   def self.feeds
     Feed.all
   end
