@@ -31,4 +31,18 @@ class TestReader < Test::Unit::TestCase
     assert Article.all(:feed => @url).count > 0
   end
 
+  def test_read_feeds
+    Feed.all.destroy!
+    Article.all.destroy!
+
+    Feed.create(:url => @url)
+    Feed.create(:url => "http://rss.slashdot.org/Slashdot/slashdot")
+
+    Reader.read_feeds
+
+    assert Article.all.count > 0
+    assert Article.all(:fields => [:feed], :unique => true).count == 2
+    
+  end
+
 end
