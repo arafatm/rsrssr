@@ -27,6 +27,7 @@ class TestReader < Test::Unit::TestCase
     feed = Reader.feed(@url)
 
     Reader.save_articles(feed, @url)
+    Reader.save_articles(feed, @url)
     assert Article.all(:feed => @url).count > 0
   end
 

@@ -13,10 +13,15 @@ class Reader
 
   def self.save_articles(feed, url)
     feed.items.each do |item|
-      Article.first_or_create(:link => item.link,
-                              :title => item.title,
-                              :description => item.description,
-                              :feed => url)
+      begin
+        Article.create(:link => item.link,
+                       :title => item.title,
+                       :description => item.description,
+                       :feed => url)
+      rescue DataObjects::IntegrityError => e
+        puts e.inspect
+        return
+      end
     end
   end
 end
