@@ -18,7 +18,6 @@ class Reader
     SimpleRSS.parse open(url)
   end
 
-  # TODO: rename feed => articles
   def self.save_articles(articles, url)
     articles.items.each do |item|
       begin
