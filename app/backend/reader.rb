@@ -5,7 +5,7 @@ require 'open-uri'
 class Reader
   def self.read_feeds
     Reader.feeds.each do |feed|
-      articles = Reader.feed(feed.url)
+      articles = Reader.read(feed.url)
       Reader.save_articles(articles, feed.url)
     end
   end
@@ -14,14 +14,13 @@ class Reader
     Feed.all
   end
 
-  # TODO: rename read
-  def self.feed(url)
+  def self.read(url)
     SimpleRSS.parse open(url)
   end
 
   # TODO: rename feed => articles
-  def self.save_articles(feed, url)
-    feed.items.each do |item|
+  def self.save_articles(articles, url)
+    articles.items.each do |item|
       begin
         Article.create(:link => item.link,
                        :title => item.title,

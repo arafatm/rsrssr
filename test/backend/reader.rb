@@ -15,7 +15,7 @@ class TestReader < Test::Unit::TestCase
   end
 
   def test_feed
-    assert Reader.feed(@url).items.length > 0
+    assert Reader.read(@url).items.length > 0
   end
 
   def test_save_articles
@@ -24,7 +24,7 @@ class TestReader < Test::Unit::TestCase
     assert Article.all(:feed => @url).count == 0
 
     Feed.first_or_create(:url => @url)
-    feed = Reader.feed(@url)
+    feed = Reader.read(@url)
 
     Reader.save_articles(feed, @url)
     Reader.save_articles(feed, @url)
