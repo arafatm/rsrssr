@@ -10,17 +10,24 @@ class TestReader < Test::Unit::TestCase
 
   def test_load_feeds
     Feed.first_or_create(:url => @url)
-    feeds = Reader.feeds
-    assert feeds.count > 0
+
+    assert Reader.feeds.count > 0
   end
 
   def test_feed
-    articles = Reader.feed(@url)
-    assert articles.items.length > 0
+    assert Reader.feed(@url).items.length > 0
   end
 
   def test_save_articles
-    pend "Given feed, save articles"
+    articles = Article.all(:feed => @url)
+    articles.destroy!
+    assert Article.all(:feed => @url).count == 0
+
+    Feed.first_or_create(:url => @url)
+    feed = Reader.feed(@url)
+
+    Reader.save_articles(feed, @url)
+    assert Article.all(:feed => @url).count > 0
   end
 
 end

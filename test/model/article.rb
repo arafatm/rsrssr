@@ -13,21 +13,25 @@ class TestArticle < Test::Unit::TestCase
     assert article.class == Article
   end
   def test_link_is_unique
-    create_article
+    create_yermom_article
     begin
-      Article.create(:link => "http://xkcd.com/1185/",
+      Article.create(:link => "http://yermomma.com/1185/",
                      :title => "Test Title",
                      :description => "Test Description",
                      :feed => @url)
     rescue Exception => e
       assert e.message == "column link is not unique"
     end
+    destroy_yermom_article
   end
 
-  def create_article
-    Article.first_or_create(:link => "http://xkcd.com/1185/",
-                            :title => "Test Title",
-                            :description => "Test Description",
-                            :feed => @url)
+  def create_yermom_article
+    article = Article.first_or_create(:link => "http://yermomma.com/1185/",
+                                      :title => "Test Title",
+                                      :description => "Test Description",
+                                      :feed => @url)
+  end
+  def destroy_yermom_article
+    Article.get("http://yermomma.com/1185/").destroy!
   end
 end
