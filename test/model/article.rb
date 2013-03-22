@@ -8,7 +8,7 @@ class TestArticle < Test::Unit::TestCase
     @url = "http://xkcd.com/rss.xml"
   end
 
-  def test_Article_has_attributes_link_title_description_feed
+  def test_Article_has_attributes_link_title_description_feed_pubDate
     article = create_yermom_article
     assert article.class == Article
     assert article.respond_to? "link"

@@ -24,7 +24,8 @@ class Reader
         Article.create(:link => item.link,
                        :title => item.title,
                        :description => item.description,
-                       :feed => url)
+                       :feed => url,
+                       :pubDate => item.pubDate)
       rescue DataObjects::IntegrityError => e
       end
     end
