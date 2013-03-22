@@ -9,12 +9,12 @@ class TestFeed < Test::Unit::TestCase
     @url = "http://xkcd.com/rss.xml"
   end
 
-  def test_has_attribute_url
+  def test_Feed_has_attribute_url
     feed = Feed.first_or_create(:url => @url)
     assert_equal feed.url, @url
   end
 
-  def test_url_is_unique
+  def test_Feed_url_is_unique
     Feed.first_or_create(:url => @url)
     begin
       Feed.create(:url => @url)

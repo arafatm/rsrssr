@@ -21,4 +21,5 @@ group :development do
   gem "observr"
   gem 'sqlite3'
   gem 'dm-sqlite-adapter'
+  gem 'colorize'
 end
