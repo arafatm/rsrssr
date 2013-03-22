@@ -11,6 +11,11 @@ class TestArticle < Test::Unit::TestCase
   def test_Article_has_attributes_link_title_description_feed
     article = create_yermom_article
     assert article.class == Article
+    assert article.respond_to? "link"
+    assert article.respond_to? "title"
+    assert article.respond_to? "description"
+    assert article.respond_to? "feed"
+    assert article.respond_to? "pubDate"
   end
 
   def test_Article_link_is_unique

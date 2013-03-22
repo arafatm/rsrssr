@@ -5,5 +5,6 @@ class Article
   property :title,  String
   property :description,  String
   property :feed,   String
+  property :pubDate, Date
 
 end
