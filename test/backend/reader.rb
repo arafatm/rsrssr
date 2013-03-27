@@ -14,7 +14,7 @@ class TestReader < Test::Unit::TestCase
     assert Reader.feeds.count > 0
   end
 
-  def test_feed
+  def test_read
     assert Reader.read(@url).items.length > 0
   end
 
