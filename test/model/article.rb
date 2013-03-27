@@ -8,11 +8,17 @@ class TestArticle < Test::Unit::TestCase
     @url = "http://xkcd.com/rss.xml"
   end
 
-  def has_attributes_link_title_description_feed
-    article = create_article
+  def test_Article_has_attributes_link_title_description_feed_pubDate
+    article = create_yermom_article
     assert article.class == Article
+    assert article.respond_to? "link"
+    assert article.respond_to? "title"
+    assert article.respond_to? "description"
+    assert article.respond_to? "feed"
+    assert article.respond_to? "pubDate"
   end
-  def test_link_is_unique
+
+  def test_Article_link_is_unique
     create_yermom_article
     begin
       Article.create(:link => "http://yermomma.com/1185/",

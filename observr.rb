@@ -1,14 +1,30 @@
+require 'colorize'
+
 def watch_tests
-  watch( 'test/(.*)\.rb' ) do |md| 
+  watch( 'test/(.*)/(.*).rb' ) do |md| 
     system("echo '\n\n---------------------------------------- #{md[0]}'")
-    system("bundle exec ruby #{md[0]} --notify")
+    #system("bundle exec ruby #{md[0]}")
+    run_test md[0]
   end
 end
 
 def watch_app
   watch( 'app/(.*)/(.*).rb' ) do |md| 
     system("echo '\n\n---------------------------------------- #{md[0]}'")
-    system("bundle exec ruby #{md[0].sub('app', 'test')} --notify") 
+    run_test md[0].sub('app', 'test')
+  end
+end
+
+def run_test(file)
+  output = `bundle exec ruby #{file}`
+  result = output.split("\n").grep(/\d+ tests, .*/)
+  details = result.to_s.scan(/\d+/)
+  fails = details.slice(2..3).any? { |f| f.to_i > 0 }
+  if(fails)
+    puts output.colorize(:light_red)
+  else
+    puts result.to_s.colorize(:light_green)
+    run_all
   end
 end
 
