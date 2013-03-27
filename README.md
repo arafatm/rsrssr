@@ -7,6 +7,7 @@
 - Read articles
 - Mark read
 - auto-mark read when scrolling
+  - steal from http://coding.pressbin.com/26/Create-a-Google-Reader-knockoff-using-Javascript
 - save article
 
 ### Feeds
