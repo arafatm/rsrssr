@@ -16,6 +16,10 @@ def watch_app
 end
 
 def run_test(file)
+  unless File.exist?(file)
+    puts "Test File #{file} not created".colorize(:light_red).red
+    return
+  end
   output = `bundle exec ruby #{file}`
   result = output.split("\n").grep(/\d+ tests, .*/)
   details = result.to_s.scan(/\d+/)

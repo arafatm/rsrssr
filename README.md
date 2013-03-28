@@ -1,22 +1,11 @@
-# Plan
+# Next Steps
 
-## UI
-
-### Articles
-
-- Read articles
-- Mark read
+- Display articles in webpage
+- checkbox to Mark articles read
+- save article
 - auto-mark read when scrolling
   - steal from http://coding.pressbin.com/26/Create-a-Google-Reader-knockoff-using-Javascript
-- save article
-
-### Feeds
-
-- CRUD Feed
-- Read all feeds
-
-### Security
-
+- share article with friend (provide rss feed of 'shared')
 - Some Auth
 
 
