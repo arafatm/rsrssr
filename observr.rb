@@ -2,22 +2,31 @@ require 'colorize'
 
 def watch_tests
   watch( 'test/(.*)/(.*).rb' ) do |md| 
-    system("echo '\n\n---------------------------------------- #{md[0]}'")
-    #system("bundle exec ruby #{md[0]}")
+    puts "\n\n--------------- #{md[0]}".colorize(:cyan)
     run_test md[0]
   end
 end
 
 def watch_app
   watch( 'app/(.*)/(.*).rb' ) do |md| 
-    system("echo '\n\n---------------------------------------- #{md[0]}'")
+    puts "\n\n--------------- #{md[0]}".colorize(:cyan)
     run_test md[0].sub('app', 'test')
   end
 end
 
-def parse_test_results(output)
-end
+def puts_results(output, color)
+  result = output.split("\n")
 
+  result.each do |line|
+    if line =~ /^.* => .*/
+      puts line.colorize(color)
+    elsif line =~ /^\d+ tests, .*/
+      puts line.colorize(color)
+    else
+      puts line
+    end
+  end
+end
 def parse_tests(filename, output)
   result = output.split("\n").grep(/\d+ tests, .*/)
   details = result.to_s.scan(/\d+/)
@@ -35,16 +44,17 @@ def parse_tests(filename, output)
     " : #{details[6]} N"
 
   if(fails)
-    puts output.colorize(:light_red)
+    puts_results(output, :light_red)
     system %Q{#{screen}'%{= rw}#{time} #{filename}%=#{msg} '}
   elsif(pendings)
-    puts output.colorize(:light_yellow)
+    puts_results(output, :light_yellow)
     system %Q{#{screen}'%{= yw}#{time} #{filename}%=#{msg} '}
   else
-    puts output.to_s.colorize(:light_green)
+    puts_results(output, :light_green)
     system %Q{#{screen}'%{= gk}#{time} #{filename}%=#{msg} '}
-    run_all
+    return true
   end
+  return false
 
 end
 
@@ -56,7 +66,9 @@ def run_test(file)
   end
 
   output = `bundle exec ruby #{file}`
-  parse_tests(file, output)
+  if parse_tests(file, output)
+    run_all
+  end
 end
 
 def run_all

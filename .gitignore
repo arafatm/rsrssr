@@ -4,3 +4,4 @@
 .config
 .sass-cache
 *.db
+*.db-journal
