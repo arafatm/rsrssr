@@ -26,13 +26,13 @@ def parse_tests(filename, output)
 
   screen = %Q{screen -X hardstatus alwayslastline }
   time = Time.now.strftime("%I:%M %p")
-  msg = "#{details[0]}T" +
-    " : #{details[1]}A" +
-    " : #{details[2]}F" +
-    " : #{details[3]}E" +
-    " : #{details[4]}P" +
-    " : #{details[5]}O" +
-    " : #{details[6]}N"
+  msg = "#{details[0]} T" +
+    " : #{details[1]} A" +
+    " : #{details[2]} F" +
+    " : #{details[3]} E" +
+    " : #{details[4]} P" +
+    " : #{details[5]} O" +
+    " : #{details[6]} N"
 
   if(fails)
     puts output.colorize(:light_red)
