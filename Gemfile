@@ -14,12 +14,15 @@ gem 'data_mapper'
 #end
 #
 group :development do
-  gem "rake"
-  gem "test-unit"
-  gem "test-unit-runner-tap"
-  gem "test-unit-notify"
-  gem "observr"
-  gem 'sqlite3'
-  gem 'dm-sqlite-adapter'
+  gem "sinatra", :require => "sinatra/base"
   gem 'colorize'
+  gem 'dm-sqlite-adapter'
+  gem "observr"
+  gem "rack-test", :require => "rack/test"
+  gem "rake"
+  gem 'shotgun'
+  gem 'sqlite3'
+  gem "test-unit"
+  gem "test-unit-notify"
+  gem "test-unit-runner-tap"
 end
