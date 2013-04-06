@@ -26,10 +26,10 @@ def run_test(file)
   fails = details.slice(2..3).any? { |f| f.to_i > 0 }
   if(fails)
     puts output.colorize(:light_red)
-    system("screen -X hardstatus alwayslastline '%{dR}Fail ...'")
+    system("screen -X hardstatus alwayslastline '%{= rd}Fail ...%='")
   else
     puts result.to_s.colorize(:light_green)
-    system("screen -X hardstatus alwayslastline '%{dG}Pass ...'")
+    system("screen -X hardstatus alwayslastline '%{= gb}Pass ...%='")
     run_all
   end
 end

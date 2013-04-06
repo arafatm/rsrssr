@@ -3,7 +3,7 @@ require 'sinatra'
 require './app/model/config.rb'
 
 get '/' do
-'Hello World'
+  'Hello World'
 end
 
 # ruby main.rb -e production/test/development to see environment
