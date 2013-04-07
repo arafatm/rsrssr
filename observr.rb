@@ -35,13 +35,13 @@ def parse_tests(filename, output)
 
   screen = %Q{screen -X hardstatus alwayslastline }
   time = Time.now.strftime("%I:%M %p")
-  msg = "#{details[0]} T" +
-    " : #{details[1]} A" +
-    " : #{details[2]} F" +
-    " : #{details[3]} E" +
-    " : #{details[4]} P" +
-    " : #{details[5]} O" +
-    " : #{details[6]} N"
+  msg = "%{= dG}  #{details[0]}" +
+    " : %{= dG}#{details[1]}" +
+    " : %{= dR}#{details[2]}" +
+    " : %{= dR}#{details[3]}" +
+    " : %{= dy}#{details[4]}" +
+    " : %{= dy}#{details[5]}" +
+    " : %{= dy}#{details[6]}"
 
   if(fails)
     puts_results(output, :light_red)
@@ -72,7 +72,6 @@ def run_test(file)
 end
 
 def run_all
-  system("echo '\n\n---------------------------------------- Suite'")
   output = `bundle exec rake tests`
   parse_tests("ALL", output)
 end
