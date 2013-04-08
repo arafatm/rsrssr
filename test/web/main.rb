@@ -1,8 +1,7 @@
 require './app/web/main.rb'
 require 'test/unit'
 require 'rack/test'
-
-#ENV['RACK_ENV'] = 'development'
+require 'json'
 
 class MainTest < Test::Unit::TestCase
   include Rack::Test::Methods
@@ -11,10 +10,16 @@ class MainTest < Test::Unit::TestCase
     Sinatra::Application
   end
 
-  def test_root
-    get '/'
+  def test_get_articles
+    get '/articles'
     assert last_response.ok?
-    assert_equal 'Hello World', last_response.body
+    puts last_response.inspect
+    last_response.each do |i|
+      puts i
+    end
+    assert JSON.parse(last_response.body).size > 0
+    #assert_equal(expected, actual, yermom, hismom, mymom)
+    omit 'test'
   end
 
 end
