@@ -131,4 +131,5 @@ end
 #run_all
 watch_tests
 watch_app
+watch_commits
 

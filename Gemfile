@@ -2,6 +2,10 @@ source "https://rubygems.org"
 
 gem "simple-rss"
 gem 'data_mapper'
+gem "sinatra", :require => "sinatra/base"
+gem "rake"
+gem "dm-serializer"
+
 #gem "sinatra", :require => "sinatra/base"
 #gem "slim"
 #gem 'sass'
@@ -14,12 +18,10 @@ gem 'data_mapper'
 #end
 #
 group :development do
-  gem "sinatra", :require => "sinatra/base"
   gem 'colorize'
   gem 'dm-sqlite-adapter'
   gem "observr"
   gem "rack-test", :require => "rack/test"
-  gem "rake"
   gem 'shotgun'
   gem 'sqlite3'
   gem "test-unit"
