@@ -2,7 +2,7 @@ require 'colorize'
 
 # Run all tests on commit
 def watch_commits
-  watch( '.git/COMMIT_EDITMSG' ) do |md| 
+  watch( '.git/index' ) do |md| 
     run_all
   end
 end
