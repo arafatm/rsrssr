@@ -18,8 +18,6 @@ class MainTest < Test::Unit::TestCase
       puts i
     end
     assert JSON.parse(last_response.body).size > 0
-    #assert_equal(expected, actual, yermom, hismom, mymom)
-    omit 'test'
   end
 
 end
