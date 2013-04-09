@@ -1,5 +1,12 @@
 require 'colorize'
 
+# Run all tests on commit
+def watch_commits
+  watch( '.git/COMMIT_EDITMSG' ) do |md| 
+    run_all
+  end
+end
+
 def watch_tests
   watch( 'test/(.*)/(.*).rb' ) do |md| 
     puts "\n\n--------------- #{md[0]}".colorize(:cyan)
@@ -92,15 +99,15 @@ def run_test(file)
   puts_screen file, nil, nil
 
   output = `bundle exec ruby #{file}`
-  if parse_tests(file, output)
-    run_all
-  end
+  parse_tests(file, output)
 end
 
 def run_all
   puts_screen "Running ALL ...", nil, nil
   output = `bundle exec rake tests`
-  parse_tests("ALL", output)
+  if parse_tests("ALL", output)
+    system("git push")
+  end
 end
 
 # Ctrl-\
